@@ -1,0 +1,51 @@
+Table users {
+  id uuid [pk]
+  email varchar [not null, unique]
+  password varchar [not null]
+  name varchar
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+}
+
+Table columns {
+  id uuid [pk]
+  user_id uuid [not null]
+  title varchar [not null]
+  position int [not null, default: 0]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+
+  Indexes {
+    user_id
+  }
+}
+
+Table cards {
+  id uuid [pk]
+  column_id uuid [not null]
+  title varchar [not null]
+  description text
+  position int [not null, default: 0]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+
+  Indexes {
+    column_id
+  }
+}
+
+Table comments {
+  id uuid [pk]
+  card_id uuid [not null]
+  content varchar [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+
+  Indexes {
+    card_id
+  }
+}
+
+Ref: columns.user_id > users.id [delete: cascade]
+Ref: cards.column_id > columns.id [delete: cascade]
+Ref: comments.card_id > cards.id [delete: cascade]
