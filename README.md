@@ -2,6 +2,8 @@
 
 NestJS REST API для Trello-подобного приложения с авторизацией, PostgreSQL и Swagger.
 
+https://purrwebfr-ujbn.vercel.app/ фронтенд для тестирования бд и бекенд задеплоены
+
 ## Функционал
 
 - **JWT авторизация** (email/пароль)
